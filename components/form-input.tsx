@@ -1,13 +1,11 @@
-export default function FormInput({ emoji, name, type, placeholder, required = false, errors }: FormInputProps) {
+export default function FormInput({ emoji, name, errors, ...props }: FormInputProps) {
   return (
     <div className='flex flex-col gap-2'>
       <div className={`flex items-center gap-2 ring-1 ring-stone-400  px-2 rounded-xl has-[:focus]:ring-stone-700 has-[:click]:ring-stone-400`}>
         {emoji}
         <input
           name={name}
-          type={type}
-          placeholder={placeholder}
-          required={required}
+          {...props}
           className='w-full h-8 outline-none placeholder:text-xs'
         />
       </div>
@@ -21,10 +19,10 @@ export default function FormInput({ emoji, name, type, placeholder, required = f
 }
 
 interface FormInputProps extends React.HTMLAttributes<HTMLInputElement> {
-  emoji: React.ReactNode;
   name: string;
   type: string;
   placeholder: string;
   required: boolean;
+  emoji?: React.ReactNode;
   errors?: string[];
 }
